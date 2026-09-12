@@ -29,22 +29,25 @@ public class WorkWithCSV {
         return list;
     }
 
-    public void ComparisonCSV(String pathFirstFile, String pathSecondFile){
+    public List<String> ComparisonCSV(String pathFirstFile, String pathSecondFile){
         List<String[]> dataFirstFile = UploadFileCSV(pathFirstFile);
         List<String[]> dataSecondFile = UploadFileCSV(pathSecondFile);
 
         if (dataFirstFile.isEmpty() || dataSecondFile.isEmpty()) {
             System.out.println("Ошибка загрузки одного из файлов.");
         } else{
+            List<String> result = new ArrayList<>();
             for(int i = 0; i < dataFirstFile.size(); i++){
                 String[] rowFirstFile = dataFirstFile.get(i);
                 String[] rowSecondFile = dataSecondFile.get(i);
 
                 if(!Arrays.equals(rowFirstFile, rowSecondFile)){
-                    System.out.println("The difference in the line #" + (i+1));
-                    System.out.println(Arrays.toString(rowFirstFile) + " -> " + Arrays.toString(rowSecondFile));
+                    result.add("The difference in the line #" + (i+1) + " "
+                            + Arrays.toString(rowFirstFile) + " -> " + Arrays.toString(rowSecondFile));
                 }
             }
+            return result;
         }
+        return null;
     }
 }

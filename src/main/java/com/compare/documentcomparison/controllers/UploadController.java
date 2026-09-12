@@ -2,6 +2,7 @@ package com.compare.documentcomparison.controllers;
 
 import com.compare.documentcomparison.work_with_files.WorkWithCSV;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 public class UploadController {
@@ -34,27 +36,28 @@ public class UploadController {
         return "ComparisonCSV";
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/resultcsv")
     public String handleFileUpload(@RequestParam("firstFile") MultipartFile firstFile,
                                    @RequestParam("secondFile") MultipartFile secondFile,
-                                   RedirectAttributes redirectAttributes){
+                                   RedirectAttributes redirectAttributes, Model model){
         if (firstFile.isEmpty() || secondFile.isEmpty()){
             redirectAttributes.addFlashAttribute("message", "Выберите файлы для загрузки");
             return "redirect:/";
         }
 
         try {
-            // Сохраняем первый файл
+
             Path pathFirst = Paths.get(UPLOAD_DIR + firstFile.getOriginalFilename());
             Files.createDirectories(pathFirst.getParent());
             Files.write(pathFirst, firstFile.getBytes());
 
-            // Сохраняем второй файл
             Path pathSecond = Paths.get(UPLOAD_DIR + secondFile.getOriginalFilename());
             Files.write(pathSecond, secondFile.getBytes());
 
             WorkWithCSV workWithCSV = new WorkWithCSV();
-            workWithCSV.ComparisonCSV(pathFirst.toString(), pathSecond.toString());
+            List<String> result = workWithCSV.ComparisonCSV(pathFirst.toString(), pathSecond.toString());
+
+            model.addAllAttributes(result);
 
             redirectAttributes.addFlashAttribute("message", "Файлы успешно загружены и обработаны!");
 
@@ -63,6 +66,6 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("message", "Ошибка при обработке файлов: " + e.getMessage());
         }
 
-        return "redirect:/";
+        return "resultCSV";
     }
 }
