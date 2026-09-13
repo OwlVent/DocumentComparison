@@ -41,7 +41,6 @@ public class UploadController {
                                    @RequestParam("secondFile") MultipartFile secondFile,
                                    RedirectAttributes redirectAttributes, Model model){
         if (firstFile.isEmpty() || secondFile.isEmpty()){
-            redirectAttributes.addFlashAttribute("message", "Выберите файлы для загрузки");
             return "redirect:/";
         }
 
@@ -57,13 +56,10 @@ public class UploadController {
             WorkWithCSV workWithCSV = new WorkWithCSV();
             List<String> result = workWithCSV.ComparisonCSV(pathFirst.toString(), pathSecond.toString());
 
-            model.addAllAttributes(result);
-
-            redirectAttributes.addFlashAttribute("message", "Файлы успешно загружены и обработаны!");
+            model.addAttribute("info", result);
 
         } catch (IOException e) {
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute("message", "Ошибка при обработке файлов: " + e.getMessage());
         }
 
         return "resultCSV";
