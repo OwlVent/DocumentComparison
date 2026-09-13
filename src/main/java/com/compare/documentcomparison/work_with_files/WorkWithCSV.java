@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.compare.documentcomparison.exceptionhandler.BusinessException;
+import com.compare.documentcomparison.exceptionhandler.ErrorType;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.jspecify.annotations.NonNull;
@@ -33,8 +35,8 @@ public class WorkWithCSV {
         List<String[]> dataFirstFile = UploadFileCSV(pathFirstFile);
         List<String[]> dataSecondFile = UploadFileCSV(pathSecondFile);
 
-        if (dataFirstFile.isEmpty() || dataSecondFile.isEmpty()) {
-            System.out.println("Ошибка загрузки одного из файлов.");
+        if (dataFirstFile.size() == 1 || dataSecondFile.size() == 1) {
+            throw new BusinessException(ErrorType.NO_DATA);
         } else{
             List<String> result = new ArrayList<>();
             for(int i = 0; i < dataFirstFile.size(); i++){
@@ -48,6 +50,5 @@ public class WorkWithCSV {
             }
             return result;
         }
-        return null;
     }
 }

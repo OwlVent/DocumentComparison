@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .error-box { border: 1px solid #ffcccc; background: #fff5f5; padding: 20px; display: inline-block; border-radius: 5px; }
+        h1 { color: #cc0000; }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <h1>Warning!</h1>
+        <p th:text="${errorMessage}">Стандартный текст ошибки</p>
+        <a href="/comparison">Return</a>
+    </div>
+</body>
+</html>

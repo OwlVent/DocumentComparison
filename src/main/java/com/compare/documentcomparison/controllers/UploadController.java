@@ -1,5 +1,7 @@
 package com.compare.documentcomparison.controllers;
 
+import com.compare.documentcomparison.exceptionhandler.BusinessException;
+import com.compare.documentcomparison.exceptionhandler.ErrorType;
 import com.compare.documentcomparison.work_with_files.WorkWithCSV;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +43,7 @@ public class UploadController {
                                    @RequestParam("secondFile") MultipartFile secondFile,
                                    RedirectAttributes redirectAttributes, Model model){
         if (firstFile.isEmpty() || secondFile.isEmpty()){
-            return "redirect:/";
+            throw new BusinessException(ErrorType.FILE_IS_EMPTY);
         }
 
         try {
