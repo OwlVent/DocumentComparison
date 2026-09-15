@@ -33,7 +33,8 @@ public class UploadController {
         return "Ooops...";
     }
 
-    @GetMapping("/comparison")
+    @GetMapping("/RRRRRR" +
+            "")
     public String showComparisonPage() {
         return "ComparisonCSV";
     }
@@ -56,7 +57,7 @@ public class UploadController {
             Files.write(pathSecond, secondFile.getBytes());
 
             WorkWithCSV workWithCSV = new WorkWithCSV();
-            List<String> result = workWithCSV.ComparisonCSV(pathFirst.toString(), pathSecond.toString());
+            List<String> result = workWithCSV.comparisonCSV(pathFirst.toString(), pathSecond.toString());
 
             model.addAttribute("info", result);
 

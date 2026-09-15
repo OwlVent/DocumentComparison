@@ -14,7 +14,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.jspecify.annotations.NonNull;
 
 public class WorkWithCSV {
-    private @NonNull List<String[]> UploadFileCSV(String path) {
+    private @NonNull List<String[]> uploadFileCSV(String path) {
         List<String[]> list = new ArrayList<>();
         try (Reader reader = Files.newBufferedReader(Path.of(path))) {
             try (CSVReader csvReader = new CSVReader(reader)) {
@@ -31,9 +31,9 @@ public class WorkWithCSV {
         return list;
     }
 
-    public List<String> ComparisonCSV(String pathFirstFile, String pathSecondFile){
-        List<String[]> dataFirstFile = UploadFileCSV(pathFirstFile);
-        List<String[]> dataSecondFile = UploadFileCSV(pathSecondFile);
+    public List<String> comparisonCSV(String pathFirstFile, String pathSecondFile){
+        List<String[]> dataFirstFile = uploadFileCSV(pathFirstFile);
+        List<String[]> dataSecondFile = uploadFileCSV(pathSecondFile);
 
         if (dataFirstFile.size() == 1 || dataSecondFile.size() == 1) {
             throw new BusinessException(ErrorType.NO_DATA);
