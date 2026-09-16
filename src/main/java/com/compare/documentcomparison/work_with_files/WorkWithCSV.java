@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.compare.documentcomparison.exceptionhandler.BusinessException;
-import com.compare.documentcomparison.exceptionhandler.ErrorType;
+import com.compare.documentcomparison.exception_handler.BusinessException;
+import com.compare.documentcomparison.exception_handler.ErrorType;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.jspecify.annotations.NonNull;
@@ -42,6 +42,13 @@ public class WorkWithCSV {
             for(int i = 0; i < dataFirstFile.size(); i++){
                 String[] rowFirstFile = dataFirstFile.get(i);
                 String[] rowSecondFile = dataSecondFile.get(i);
+
+                if (rowFirstFile != null && rowFirstFile.length > 0) {
+                    rowFirstFile[0] = rowFirstFile[0].replaceAll("[\\uFEFF\\u200B\\u2060]", "");
+                }
+                if (rowSecondFile != null && rowSecondFile.length > 0) {
+                    rowSecondFile[0] = rowSecondFile[0].replaceAll("[\\uFEFF\\u200B\\u2060]", "");
+                }
 
                 if(!Arrays.equals(rowFirstFile, rowSecondFile)){
                     result.add("The difference in the line #" + (i+1) + " "

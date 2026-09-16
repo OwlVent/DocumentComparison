@@ -1,4 +1,4 @@
-package com.compare.documentcomparison.exceptionhandler;
+package com.compare.documentcomparison.exception_handler;
 
 public class BusinessException extends RuntimeException {
     private final ErrorType errorType;

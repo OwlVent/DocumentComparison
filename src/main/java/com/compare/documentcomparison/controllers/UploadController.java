@@ -1,7 +1,7 @@
 package com.compare.documentcomparison.controllers;
 
-import com.compare.documentcomparison.exceptionhandler.BusinessException;
-import com.compare.documentcomparison.exceptionhandler.ErrorType;
+import com.compare.documentcomparison.exception_handler.BusinessException;
+import com.compare.documentcomparison.exception_handler.ErrorType;
 import com.compare.documentcomparison.work_with_files.WorkWithCSV;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

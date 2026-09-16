@@ -1,4 +1,4 @@
-package com.compare.documentcomparison.exceptionhandler;
+package com.compare.documentcomparison.exception_handler;
 
 public enum ErrorType {
     FILE_IS_EMPTY("One of the files empty. Please check data of files"),

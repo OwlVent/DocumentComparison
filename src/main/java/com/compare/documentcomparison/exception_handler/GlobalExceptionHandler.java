@@ -1,4 +1,4 @@
-package com.compare.documentcomparison.exceptionhandler;
+package com.compare.documentcomparison.exception_handler;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

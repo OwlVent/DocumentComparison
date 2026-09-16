@@ -16,11 +16,6 @@ class DocumentComparisonApplicationTests {
     private final WorkWithCSV workWithCSV = new WorkWithCSV();
 
     @Test
-    /*@ParameterizedTest
-    @CsvFileSource(resources = {
-            "C:/Users/vento/IdeaProjects/DocumentComparison/src/main/resources/files/FirstBookCSV.csv",
-            "C:/Users/vento/IdeaProjects/DocumentComparison/src/main/resources/files/SecondBookCSV.csv"
-    })*/
     void testComparisonCSV() {
         String firstFile = "src/main/resources/files/FirstBookCSV.csv";
         String secondFile = "src/main/resources/files/SecondBookCSV.csv";
