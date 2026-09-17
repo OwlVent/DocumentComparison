@@ -33,8 +33,7 @@ public class UploadController {
         return "Ooops...";
     }
 
-    @GetMapping("/RRRRRR" +
-            "")
+    @GetMapping("/comparison")
     public String showComparisonPage() {
         return "ComparisonCSV";
     }

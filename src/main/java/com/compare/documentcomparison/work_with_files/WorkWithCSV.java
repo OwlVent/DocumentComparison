@@ -39,6 +39,7 @@ public class WorkWithCSV {
             throw new BusinessException(ErrorType.NO_DATA);
         } else{
             List<String> result = new ArrayList<>();
+            int hit = 0;
             for(int i = 0; i < dataFirstFile.size(); i++){
                 String[] rowFirstFile = dataFirstFile.get(i);
                 String[] rowSecondFile = dataSecondFile.get(i);
@@ -53,7 +54,11 @@ public class WorkWithCSV {
                 if(!Arrays.equals(rowFirstFile, rowSecondFile)){
                     result.add("The difference in the line #" + (i+1) + " "
                             + Arrays.toString(rowFirstFile) + " -> " + Arrays.toString(rowSecondFile));
+                    hit++;
                 }
+            }
+            if (hit == 0){
+                result.add("The files are identical");
             }
             return result;
         }
